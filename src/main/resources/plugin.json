@@ -1,0 +1,9 @@
+{
+  "name": "Diggers",
+  "minGameVersion": "145",
+  "displayName": "Gamemode plugin that lets you break blocks using shock mines",
+  "author": "NazrinNya",
+  "description": "Yeah no",
+  "version": "1.0",
+  "main": "plugin.Main"
+}

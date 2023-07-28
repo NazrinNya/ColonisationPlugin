@@ -1,0 +1,46 @@
+plugins {
+    id 'java-library'
+    id 'java'
+    id 'org.springframework.boot' version '3.0.1'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io/' }
+}
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+ext {
+    mindustryVersion = 'v145'
+}
+tasks.withType(JavaCompile) {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://www.jitpack.io/' }
+}
+
+dependencies {
+    compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
+    compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
+    compileOnly "com.github.Anuken.Mindustry:server:$mindustryVersion"
+}
+
+jar {
+    version = null
+    exclude 'META-INF/.RSA', 'META-INF/.SF','META-INF/*.DSA'
+    duplicatesStrategy=DuplicatesStrategy.EXCLUDE
+
+    archiveFileName = "Diggers.jar"
+    from configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+}
